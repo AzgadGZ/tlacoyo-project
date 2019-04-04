@@ -1,18 +1,20 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-container grid-list-md fluid>
+    <v-layout>
+      <v-btn block color="primary" depressed class="mb-3">
+        <v-icon left>delete</v-icon>Eliminar lista
+      </v-btn>
+    </v-layout>
+    <list-tasks/>
+    <add-task/>
+  </v-container>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
-
 export default {
-  name: 'home',
   components: {
-    HelloWorld,
-  },
+    AddTask: () => import("@/components/AddTask.vue"),
+    ListTasks: () => import("@/components/ListTasks.vue")
+  }
 };
 </script>
