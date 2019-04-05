@@ -11,10 +11,13 @@ export default {
     },
     changeSelectedList(state, selectedList) {
       state.selectedList = selectedList;
+    },
+    addList(state, list) {
+      state.lists.push(list);
     }
   },
   actions: {
-    async getTaskLists({ commit, dispatch }) {
+    async getTaskLists({ commit }) {
       try {
         const lists = await axios.get("ObtenerListas");
         commit("setLists", lists);
@@ -22,7 +25,16 @@ export default {
           commit("changeSelectedList", lists[0]._id);
         }
       } catch (error) {
-        if (error.detail) commit("setSnack", error.detail, { root: true });
+        commit("setSnack", "Error al cargar listas", { root: true });
+      }
+    },
+    async newTaskLists({ commit }, lista) {
+      try {
+        const list = await axios.post("agregarLista", lista);
+        commit("addList", list);
+        return true;
+      } catch (error) {
+        commit("setSnack", "Error al agregar nueva lista", { root: true });
       }
     }
   }

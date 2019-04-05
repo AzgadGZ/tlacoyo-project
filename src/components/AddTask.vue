@@ -97,10 +97,8 @@ export default {
         ...this.task,
         listId: this.selectedList
       };
-      try {
-        const res = await this.newTask(newTask);
-        if (res) this.dialog = false;
-      } catch (error) {}
+      const res = await this.newTask(newTask);
+      if (res) this.dialog = false;
     }
   },
   computed: {
