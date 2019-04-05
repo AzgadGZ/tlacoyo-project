@@ -1,6 +1,6 @@
 <template>
   <v-toolbar color="primary" dark app>
-    <v-toolbar-side-icon @click="toggleSidebar(true)" class="hidden-lg-and-up"/>
+    <v-toolbar-side-icon @click="$emit('openSide')" class="hidden-lg-and-up"/>
     <v-toolbar-title class="headline text-uppercase hidden-lg-and-up">
       <router-link tag="span" to="/" style="cursor:pointer">
         <span>DXC</span>
@@ -17,12 +17,7 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
-export default {
-  methods: {
-    ...mapMutations(["toggleSidebar"])
-  }
-};
+export default {};
 </script>
 
 <style>

@@ -1,7 +1,7 @@
 <template>
   <v-app>
-    <tool-bar/>
-    <bars/>
+    <tool-bar @openSide="sidebar=true"/>
+    <bars v-model="sidebar"/>
     <v-content>
       <router-view/>
     </v-content>
@@ -15,6 +15,11 @@ export default {
     ToolBar: () => import("@/components/ToolBar.vue"),
     Bars: () => import("@/components/Bars.vue"),
     Snack: () => import("@/components/Snack.vue")
+  },
+  data() {
+    return {
+      sidebar: null
+    };
   }
 };
 </script>

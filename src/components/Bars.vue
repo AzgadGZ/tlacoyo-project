@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer app v-model="sidebar">
+  <v-navigation-drawer app :value="value" @input="handle">
     <v-toolbar color="primary" dark>
       <v-list>
         <v-list-tile>
@@ -29,6 +29,7 @@
 <script>
 import { mapState, mapActions, mapMutations } from "vuex";
 export default {
+  props: ["value"],
   components: {
     Category: () => import("@/components/Category.vue"),
     AddList: () => import("@/components/AddList.vue")
@@ -39,7 +40,10 @@ export default {
     ...mapActions("Task", ["getTasks"]),
     changeCategory(id) {
       this.changeSelectedList(id);
-      if (!this.$vuetify.breakpoint.lgAndUp) this.sidebar = false;
+      if (!this.$vuetify.breakpoint.lgAndUp) this.$emit("input", false);
+    },
+    handle(e) {
+      this.$emit("input", e);
     }
   },
   watch: {
@@ -48,14 +52,6 @@ export default {
     }
   },
   computed: {
-    sidebar: {
-      get() {
-        return this.$store.state.Sidebar.isOpen;
-      },
-      set(value) {
-        this.$store.commit("toggleSidebar", value);
-      }
-    },
     ...mapState({
       taskLists: state => state.TaskLists.lists,
       selectedList: state => state.TaskLists.selectedList
