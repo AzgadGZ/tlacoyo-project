@@ -2,23 +2,7 @@ import axios from "axios";
 export default {
   namespaced: true,
   state: {
-    lists: [
-      {
-        _id: 1,
-        title: "Trabajo",
-        icon: "work"
-      },
-      {
-        _id: 2,
-        title: "Escuela",
-        icon: "school"
-      },
-      {
-        _id: 3,
-        title: "Personales",
-        icon: "person"
-      }
-    ],
+    lists: [],
     selectedList: null
   },
   mutations: {
@@ -35,8 +19,7 @@ export default {
         const lists = await axios.get("ObtenerListas");
         commit("setLists", lists);
         if (lists.length > 0) {
-          commit("changeSelectedList", 0);
-          dispatch("Task/getTasks", null, { root: true });
+          commit("changeSelectedList", lists[0]._id);
         }
       } catch (error) {
         if (error.detail) commit("setSnack", error.detail, { root: true });

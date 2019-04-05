@@ -4,7 +4,7 @@
       <v-icon>add</v-icon>
     </v-btn>
 
-    <v-dialog v-model="dialog" width="500">
+    <v-dialog v-model="dialog" persistent width="500">
       <v-card>
         <v-card-title>
           <h3 class="headline">Nueva tarea</h3>
@@ -13,12 +13,22 @@
           <v-container>
             <v-layout>
               <v-flex>
-                <v-text-field v-model="title" color="secondary" label="Titulo"/>
+                <v-text-field v-model="task.title" color="secondary" label="Titulo"/>
               </v-flex>
             </v-layout>
             <v-layout>
               <v-flex>
-                <v-textarea v-model="description" color="secondary" label="Contenido" no-resize/>
+                <v-text-field v-model="task.assignedTo" color="secondary" label="Responsable"/>
+              </v-flex>
+            </v-layout>
+            <v-layout>
+              <v-flex>
+                <v-textarea
+                  v-model="task.description"
+                  color="secondary"
+                  label="Contenido"
+                  no-resize
+                />
               </v-flex>
             </v-layout>
             <v-layout>
@@ -28,7 +38,7 @@
                   v-model="menu"
                   :close-on-content-click="false"
                   :nudge-right="40"
-                  :return-value.sync="date"
+                  :return-value.sync="task.dueDate"
                   lazy
                   transition="scale-transition"
                   offset-y
@@ -38,17 +48,17 @@
                   <template v-slot:activator="{ on }">
                     <v-text-field
                       color="secondary"
-                      v-model="date"
+                      v-model="task.dueDate"
                       label="Fecha de vencimiento"
                       prepend-icon="event"
                       readonly
                       v-on="on"
                     ></v-text-field>
                   </template>
-                  <v-date-picker v-model="date" no-title scrollable>
+                  <v-date-picker v-model="task.dueDate" no-title scrollable>
                     <v-spacer></v-spacer>
                     <v-btn flat color="secondary" @click="menu = false">Cancelar</v-btn>
-                    <v-btn color="secondary" @click="$refs.menu.save(date)">Aceptar</v-btn>
+                    <v-btn color="secondary" @click="$refs.menu.save(task.dueDate)">Aceptar</v-btn>
                   </v-date-picker>
                 </v-menu>
               </v-flex>
@@ -66,28 +76,47 @@
 </template>
 
 <script>
+import { mapActions, mapState } from "vuex";
 export default {
   data() {
     return {
       dialog: false,
       menu: false,
-      date: new Date().toISOString().substr(0, 10),
-      title: '',
-      description: '',
+      task: {
+        dueDate: new Date().toISOString().substr(0, 10),
+        title: "",
+        description: "",
+        assignedTo: ""
+      }
     };
   },
   methods: {
-    addTask() {
-      alert("adding task");
+    ...mapActions("Task", ["newTask"]),
+    async addTask() {
+      const newTask = {
+        ...this.task,
+        listId: this.selectedList
+      };
+      try {
+        const res = await this.newTask(newTask);
+        if (res) this.dialog = false;
+      } catch (error) {}
     }
+  },
+  computed: {
+    ...mapState({
+      selectedList: state => state.TaskLists.selectedList
+    })
   },
   watch: {
     dialog: function(newValue) {
       if (newValue) {
-        this.menu = false;
-        this.title = '';
-        this.description = '';
-        this.date = new Date().toISOString().substr(0, 10);
+        this.task = {
+          dueDate: new Date().toISOString().substr(0, 10),
+          title: "",
+          description: "",
+          assignedTo: ""
+        };
       }
     }
   }

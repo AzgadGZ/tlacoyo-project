@@ -73,12 +73,18 @@ export default {
   methods: {
     ...mapActions("TaskLists", ["getTaskLists"]),
     ...mapMutations("TaskLists", ["changeSelectedList"]),
+    ...mapActions("Task", ["getTasks"]),
     addNewList() {
       alert("creando lista");
     },
     changeCategory(id) {
-      this.changeSelectedList(id)
+      this.changeSelectedList(id);
       if (!this.$vuetify.breakpoint.lgAndUp) this.sidebar = false;
+    }
+  },
+  watch: {
+    selectedList(newValue) {
+      this.getTasks(newValue);
     }
   },
   computed: {

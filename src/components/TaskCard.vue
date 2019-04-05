@@ -18,14 +18,14 @@
       <v-tooltip top>
         <template v-slot:activator="{ on }">
           <v-icon v-on="on">event_note</v-icon>
-          {{task.initialDate}}
+          {{task.date | date}}
         </template>
         <span>Fecha de creación</span>
       </v-tooltip>&nbsp;-&nbsp;
       <v-tooltip top>
         <template v-slot:activator="{ on }">
           <v-icon v-on="on">insert_invitation</v-icon>
-          {{task.dueDate}}
+          {{task.dueDate | date}}
         </template>
         <span>Fecha de vencimiento</span>
       </v-tooltip>
@@ -37,7 +37,12 @@
 
 <script>
 export default {
-  props: ["task"]
+  props: ["task"],
+  filters: {
+    date(value) {
+      return new Date(value).toLocaleDateString();
+    }
+  }
 };
 </script>
 

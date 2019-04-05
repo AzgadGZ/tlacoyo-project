@@ -1,7 +1,7 @@
 <template>
   <v-snackbar v-model="snackbar" multi-line>
     {{$store.state.Snack.text}}
-    <v-btn color="secondary" flat @click="snackbar = false">Close</v-btn>
+    <v-btn color="primary" flat @click="snackbar = false">Close</v-btn>
   </v-snackbar>
 </template>
 
