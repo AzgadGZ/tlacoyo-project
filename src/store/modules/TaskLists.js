@@ -14,6 +14,9 @@ export default {
     },
     addList(state, list) {
       state.lists.push(list);
+    },
+    removeTaskList(state, listID) {
+      state.lists = state.lists.filter(list => list._id !== listID);
     }
   },
   actions: {
@@ -35,6 +38,19 @@ export default {
         return true;
       } catch (error) {
         commit("setSnack", "Error al agregar nueva lista", { root: true });
+      }
+    },
+    async removeTaskList({ commit, state }) {
+      try {
+        const response = await axios.delete("borrarLista/", {
+          data: {
+            id: state.selectedList
+          }
+        });
+        commit("removeTaskList", response._id);
+        return true;
+      } catch (error) {
+        commit("setSnack", "Error al eliminar lista", { root: true });
       }
     }
   }
