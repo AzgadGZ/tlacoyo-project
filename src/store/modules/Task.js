@@ -6,16 +6,17 @@ export default {
   },
   mutations: {
     setTasks(state, tasks) {
-      state.tasks = tasks;
+      if (tasks == null) state.tasks = [];
+      else state.tasks = tasks;
     },
-    addTask(state, tasks) {
-      state.tasks.push(tasks);
+    addTask(state, task) {
+      state.tasks.push(task);
     }
   },
   actions: {
     async getTasks({ commit }, id) {
       try {
-        const tasks = await axios.get(`obtenerTareaPorId?id=${id}`);
+        const tasks = await axios.get(`obtenerTareas?id=${id}`);
         commit("setTasks", tasks);
       } catch (error) {
         commit("setSnack", "Error al obtener tareas", { root: true });

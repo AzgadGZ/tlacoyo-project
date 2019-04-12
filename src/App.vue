@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <tool-bar @openSide="sidebar=true"/>
-    <bars v-model="sidebar"/>
+    <bars v-if="$route.name == 'home'" v-model="sidebar"/>
     <v-content>
       <router-view/>
     </v-content>
