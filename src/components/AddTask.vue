@@ -76,7 +76,8 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapState } from 'vuex';
+
 export default {
   data() {
     return {
@@ -84,40 +85,40 @@ export default {
       menu: false,
       task: {
         dueDate: new Date().toISOString().substr(0, 10),
-        title: "",
-        description: "",
-        assignedTo: ""
-      }
+        title: '',
+        description: '',
+        assignedTo: '',
+      },
     };
   },
   methods: {
-    ...mapActions("Task", ["newTask"]),
+    ...mapActions('Task', ['newTask']),
     async addTask() {
       const newTask = {
         ...this.task,
-        listId: this.selectedList
+        listId: this.selectedList,
       };
       const res = await this.newTask(newTask);
       if (res) this.dialog = false;
-    }
+    },
   },
   computed: {
     ...mapState({
-      selectedList: state => state.TaskLists.selectedList
-    })
+      selectedList: state => state.TaskLists.selectedList,
+    }),
   },
   watch: {
-    dialog: function(newValue) {
+    dialog(newValue) {
       if (newValue) {
         this.task = {
           dueDate: new Date().toISOString().substr(0, 10),
-          title: "",
-          description: "",
-          assignedTo: ""
+          title: '',
+          description: '',
+          assignedTo: '',
         };
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

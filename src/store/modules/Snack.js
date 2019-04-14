@@ -1,7 +1,7 @@
 export default {
   state: {
     isActive: false,
-    text: ""
+    text: '',
   },
   mutations: {
     toggleSnack(state, isActive) {
@@ -10,6 +10,6 @@ export default {
     setSnack(state, message) {
       state.text = message;
       state.isActive = true;
-    }
-  }
+    },
+  },
 };

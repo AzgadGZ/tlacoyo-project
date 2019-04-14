@@ -37,12 +37,12 @@
 
 <script>
 export default {
-  props: ["task"],
+  props: ['task'],
   filters: {
     date(value) {
       return new Date(value).toLocaleDateString();
-    }
-  }
+    },
+  },
 };
 </script>
 

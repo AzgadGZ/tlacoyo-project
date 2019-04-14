@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.78be96a77c724c242d18a716a091088d.js"
+  "/precache-manifest.17f455d901bc07d256c8f67384c4fad8.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "tlacoyo-cdns"});

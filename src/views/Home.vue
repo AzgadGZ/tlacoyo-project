@@ -11,14 +11,15 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions } from 'vuex';
+
 export default {
   components: {
-    AddTask: () => import("@/components/AddTask.vue"),
-    ListTasks: () => import("@/components/ListTasks.vue")
+    AddTask: () => import('@/components/AddTask.vue'),
+    ListTasks: () => import('@/components/ListTasks.vue'),
   },
   methods: {
-    ...mapActions("TaskLists", ["removeTaskList"])
-  }
+    ...mapActions('TaskLists', ['removeTaskList']),
+  },
 };
 </script>

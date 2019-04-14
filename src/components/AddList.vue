@@ -36,33 +36,35 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions } from 'vuex';
+
 export default {
   data() {
     return {
       addingList: false,
       newList: {
-        name: "",
-        iconName: ""
-      }
+        name: '',
+        iconName: '',
+      },
     };
   },
   watch: {
     addingList(newValue) {
-      if (newValue)
+      if (newValue) {
         this.newList = {
-          name: "",
-          iconName: ""
+          name: '',
+          iconName: '',
         };
-    }
+      }
+    },
   },
   methods: {
-    ...mapActions("TaskLists", ["newTaskLists"]),
+    ...mapActions('TaskLists', ['newTaskLists']),
     async addNewList() {
       const res = await this.newTaskLists(this.newList);
       if (res) this.addingList = false;
-    }
-  }
+    },
+  },
 };
 </script>
 
