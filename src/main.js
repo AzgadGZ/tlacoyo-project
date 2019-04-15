@@ -14,6 +14,10 @@ Vue.config.productionTip = false;
 // Configuración inicial de IndexedDB
 initDB.sync();
 
+Vue.filter('date', function (value) {
+  return new Date(value).toLocaleDateString();
+})
+
 Vue.use(
   new VueSocketIO({
     debug: true,

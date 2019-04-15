@@ -7,11 +7,8 @@
         </span>
         <span v-else>{{task.title}}</span>
       </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn icon>
-        <v-icon v-if="task.status" color="secondary">check_box</v-icon>
-        <v-icon v-else color="accent">check_box_outline_blank</v-icon>
-      </v-btn>
+      <v-spacer/>
+      <checked-task :task="task"/>
     </v-toolbar>
     <v-card-text class="text-truncate">{{task.description}}</v-card-text>
     <v-card-actions>
@@ -36,13 +33,12 @@
 </template>
 
 <script>
+import CheckedTask from '@/components/CheckedTask';
 export default {
   props: ['task'],
-  filters: {
-    date(value) {
-      return new Date(value).toLocaleDateString();
-    },
-  },
+  components:{
+    CheckedTask
+  }  
 };
 </script>
 

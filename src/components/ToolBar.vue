@@ -1,11 +1,12 @@
 <template>
-  <v-toolbar color="primary" dark app>
-    <v-toolbar-side-icon @click="$emit('openSide')" class="hidden-lg-and-up"/>
-    <v-toolbar-title class="headline text-uppercase hidden-lg-and-up">
-      <router-link tag="span" to="/" style="cursor:pointer">
+  <v-toolbar color="primary" dark app clipped-left>
+    <v-toolbar-side-icon v-if="$route.name == 'home'" @click="$emit('openSide')" class="hidden-lg-and-up"/>
+    <v-btn v-else icon to="/">
+      <v-icon>arrow_back</v-icon>
+    </v-btn>
+    <v-toolbar-title class="headline text-uppercase">
         <span>DXC</span>
-        <span class="font-weight-light">- To do</span>
-      </router-link>
+        <span class="font-weight-light"> - Todo</span>
     </v-toolbar-title>
     <v-spacer/>
     <span class="mr-1">Conectado</span>

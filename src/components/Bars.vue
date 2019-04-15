@@ -1,18 +1,5 @@
 <template>
-  <v-navigation-drawer app :value="value" @input="handle">
-    <v-toolbar color="primary" dark>
-      <v-list>
-        <v-list-tile>
-          <v-list-tile-title class="title">
-            <router-link tag="span" to="/" style="cursor:pointer">
-              <span>DXC</span>
-              <span class="font-weight-light">- To do</span>
-            </router-link>
-          </v-list-tile-title>
-        </v-list-tile>
-      </v-list>
-    </v-toolbar>
-
+  <v-navigation-drawer app :value="value" @input="handle" clipped>
     <v-list subheader class="pt-3">
       <category
         @clicked="changeCategory"
