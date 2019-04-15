@@ -18,6 +18,8 @@ Vue.filter('date', function (value) {
   return new Date(value).toLocaleDateString();
 })
 
+Vue.use(require('vue-moment'));
+
 Vue.use(
   new VueSocketIO({
     debug: true,

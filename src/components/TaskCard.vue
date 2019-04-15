@@ -22,7 +22,7 @@
       <v-tooltip top>
         <template v-slot:activator="{ on }">
           <v-icon v-on="on">insert_invitation</v-icon>
-          {{task.dueDate | date}}
+          {{task.dueDate | moment("add", "6 hours","DD/MM/YYYY")}}
         </template>
         <span>Fecha de vencimiento</span>
       </v-tooltip>
