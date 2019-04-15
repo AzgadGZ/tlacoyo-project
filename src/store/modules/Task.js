@@ -7,8 +7,8 @@ export default {
   },
   mutations: {
     setTasks(state, tasks) {
-      if (tasks == null) Object.assign(state.tasks, []);
-      else Object.assign(state.tasks, tasks);
+      if (tasks == null) state.tasks = [];
+      else state.tasks = tasks;
     },
     addTask(state, task) {
       state.tasks.push(task);
@@ -26,7 +26,7 @@ export default {
     async newTask({ commit }, task) {
       try {
         const newTask = await axios.post('agregarTarea', task);
-        commit('addTask', newTask);
+        commit('Task/addTask', newTask, { root: true });
         return true;
       } catch (error) {
         commit('setSnack', 'Error al crear tarea', { root: true });
