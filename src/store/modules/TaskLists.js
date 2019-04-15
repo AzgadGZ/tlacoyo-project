@@ -23,7 +23,6 @@ export default {
   actions: {
     async getTaskLists({ dispatch, commit }) {
       try {
-
         // TODO: Analizar esta parte
         dispatch('IndexedDB/getData', {
           storeType: 'Listas',

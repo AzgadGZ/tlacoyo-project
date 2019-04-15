@@ -15,7 +15,7 @@ export default {
     },
     async getData({ commit }, payload) {
       const data = initDB.getFromDB(payload.storeType);
-      commit('TaskLists/setLists', data);
+      commit('TaskLists/setLists', data, { root: true });
     },
     async deleteData(_, payload) {
       initDB.deleteFromDB(payload.storeType, payload.data);
