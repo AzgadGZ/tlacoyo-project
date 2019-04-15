@@ -27,39 +27,40 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapMutations } from "vuex";
+import { mapState, mapActions, mapMutations } from 'vuex';
+
 export default {
-  props: ["value"],
+  props: ['value'],
   components: {
-    Category: () => import("@/components/Category.vue"),
-    AddList: () => import("@/components/AddList.vue")
+    Category: () => import('@/components/Category.vue'),
+    AddList: () => import('@/components/AddList.vue'),
   },
   methods: {
-    ...mapActions("TaskLists", ["getTaskLists"]),
-    ...mapMutations("TaskLists", ["changeSelectedList"]),
-    ...mapActions("Task", ["getTasks"]),
+    ...mapActions('TaskLists', ['getTaskLists']),
+    ...mapMutations('TaskLists', ['changeSelectedList']),
+    ...mapActions('Task', ['getTasks']),
     changeCategory(id) {
       this.changeSelectedList(id);
-      if (!this.$vuetify.breakpoint.lgAndUp) this.$emit("input", false);
+      if (!this.$vuetify.breakpoint.lgAndUp) this.$emit('input', false);
     },
     handle(e) {
-      this.$emit("input", e);
-    }
+      this.$emit('input', e);
+    },
   },
   watch: {
     selectedList(newValue) {
       this.getTasks(newValue);
-    }
+    },
   },
   computed: {
     ...mapState({
       taskLists: state => state.TaskLists.lists,
-      selectedList: state => state.TaskLists.selectedList
-    })
+      selectedList: state => state.TaskLists.selectedList,
+    }),
   },
   mounted() {
     this.getTaskLists();
-  }
+  },
 };
 </script>
 

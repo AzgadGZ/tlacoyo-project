@@ -12,14 +12,14 @@
 <script>
 export default {
   components: {
-    ToolBar: () => import("@/components/ToolBar.vue"),
-    Bars: () => import("@/components/Bars.vue"),
-    Snack: () => import("@/components/Snack.vue")
+    ToolBar: () => import('@/components/ToolBar.vue'),
+    Bars: () => import('@/components/Bars.vue'),
+    Snack: () => import('@/components/Snack.vue'),
   },
   data() {
     return {
-      sidebar: null
+      sidebar: null,
     };
-  }
+  },
 };
 </script>

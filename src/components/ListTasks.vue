@@ -7,16 +7,17 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState } from 'vuex';
+
 export default {
   components: {
-    TaskCard: () => import("@/components/TaskCard.vue")
+    TaskCard: () => import('@/components/TaskCard.vue'),
   },
   computed: {
     ...mapState({
-      tasks: state => state.Task.tasks
-    })
-  }
+      tasks: state => state.Task.tasks,
+    }),
+  },
 };
 </script>
 

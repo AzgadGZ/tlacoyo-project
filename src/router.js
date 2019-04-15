@@ -14,7 +14,7 @@ export default new Router({
   },
   {
     path: '*',
-    redirect: '/'
+    redirect: '/',
   },
   {
     path: '/task/:id',

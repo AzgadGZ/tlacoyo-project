@@ -10,7 +10,9 @@
     </v-list-tile-avatar>
 
     <v-list-tile-content>
-      <v-list-tile-title :class="{'font-weight-black': isActive}">{{category.name}}</v-list-tile-title>
+      <v-list-tile-title :class="{'font-weight-black': isActive}">
+        {{category.name}}
+      </v-list-tile-title>
     </v-list-tile-content>
   </v-list-tile>
 </template>
@@ -19,8 +21,8 @@
 export default {
   props: {
     category: Object,
-    isActive: Boolean
-  }
+    isActive: Boolean,
+  },
 };
 </script>
 

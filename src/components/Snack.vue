@@ -13,10 +13,10 @@ export default {
         return this.$store.state.Snack.isActive;
       },
       set(value) {
-        this.$store.commit("toggleSnack", value);
-      }
-    }
-  }
+        this.$store.commit('toggleSnack', value);
+      },
+    },
+  },
 };
 </script>
 
