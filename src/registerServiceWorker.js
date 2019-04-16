@@ -11,7 +11,7 @@ if (process.env.NODE_ENV === 'production') {
       );
     },
     registered() {
-      console.log('Service worker has been registered.');
+      console.log('Service worker has been registered. PROBando', process.env.BASE_URL);
       console.log(process.env.BASE_URL);
     },
     cached() {
