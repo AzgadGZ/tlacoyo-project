@@ -15,6 +15,7 @@ export default {
     },
     addList(state, list) {
       state.lists.push(list);
+      state.selectedList = list._id;
     },
     removeTaskList(state, listID) {
       const index = state.lists.findIndex(list => list._id === listID);
