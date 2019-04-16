@@ -2,6 +2,8 @@
 
 import { register } from 'register-service-worker';
 
+import store from './store/index';
+
 if (process.env.NODE_ENV === 'production') {
   register(`${process.env.BASE_URL}service-worker.js`, {
     ready() {
@@ -11,8 +13,7 @@ if (process.env.NODE_ENV === 'production') {
       );
     },
     registered() {
-      console.log('Service worker has been registered. PROBando', process.env.BASE_URL);
-      console.log(process.env.BASE_URL);
+      console.log('Service worker has been registered.');
     },
     cached() {
       console.log('Content has been cached for offline use.');
@@ -25,6 +26,7 @@ if (process.env.NODE_ENV === 'production') {
     },
     offline() {
       console.log('No internet connection found. App is running in offline mode.');
+      store.commit('setStatus', false);
     },
     error(error) {
       console.error('Error during service worker registration:', error);
