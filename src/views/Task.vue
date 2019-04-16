@@ -1,5 +1,9 @@
 <template>
   <v-container>
+    <v-btn @click="deleteTask" v-if="task.finished" color="primary" block>
+      <v-icon left>delete</v-icon>
+      Eliminar tarea
+    </v-btn>
     <v-card>
       <v-card-title>
         <h1>{{task.title}}</h1>
@@ -45,6 +49,7 @@ export default {
   methods: {
     ...mapMutations(["setSnack"]),
     ...mapActions("Task", ["checkTask"]),
+    ...mapMutations("Task", ['delTask']),
 
     async getTask() {
       try {
@@ -57,6 +62,18 @@ export default {
     },
     async check(task){
       this.task = await this.checkTask(task);
+    },
+    async deleteTask(){
+      try {
+        const res = await axios.delete(`borrarTarea`, {
+          data:this.task
+        });
+        this.delTask(res._id)
+        this.$router.push('/');
+      } catch (error) {
+        console.log(error)
+        this.setSnack("Error al eliminar tarea");
+      }
     }
   },
   mounted() {

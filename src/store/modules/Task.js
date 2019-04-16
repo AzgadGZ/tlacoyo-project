@@ -18,6 +18,10 @@ export default {
       if(index == -1) return
       state.tasks.splice(index, 1, task);
     },
+    delTask(state, id){
+      const index = state.tasks.findIndex( task => task._id === id );
+      state.tasks.splice(index, 1);
+    }
   },
   actions: {
     async getTasks({ commit }, id) {

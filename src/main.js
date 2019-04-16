@@ -8,7 +8,6 @@ import './registerServiceWorker';
 import './axiosConfig';
 import initDB from './indexedDB/IndexedDB';
 
-
 Vue.config.productionTip = false;
 
 // Configuración inicial de IndexedDB
@@ -17,8 +16,6 @@ initDB.sync();
 Vue.filter('date', function (value) {
   return new Date(value).toLocaleDateString();
 })
-
-Vue.use(require('vue-moment'));
 
 Vue.use(
   new VueSocketIO({
