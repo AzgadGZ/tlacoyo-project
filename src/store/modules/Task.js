@@ -1,4 +1,5 @@
 import axios from 'axios';
+import router from '@/router'
 
 export default {
   namespaced: true,
@@ -52,6 +53,17 @@ export default {
       } catch (error) {
         commit('setSnack', 'Error al actualizar tarea', { root: true });
         return false;
+      }
+    },
+    async deleteTask({commit}, task){
+      try {
+        const res = await axios.delete(`borrarTarea`, {
+          data:task
+        });
+        commit('delTask', res._id)
+        router.push('/');
+      } catch (error) {
+        commit('setSnack', 'Error al eliminar tarea', {root:true})
       }
     }
   },
