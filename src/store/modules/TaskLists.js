@@ -17,7 +17,12 @@ export default {
       state.lists.push(list);
     },
     removeTaskList(state, listID) {
-      state.lists = state.lists.filter(list => list._id !== listID);
+      const index = state.lists.findIndex(list => list._id === listID);
+      state.lists.splice(index, 1);
+      if(index > 0)
+        state.selectedList = state.lists[index - 1]._id;
+      else if(state.lists.length > 0)
+        state.selectedList = state.lists[index]._id;
     },
   },
   actions: {
