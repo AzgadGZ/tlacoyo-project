@@ -26,10 +26,17 @@ if (process.env.NODE_ENV === 'production') {
     },
     offline() {
       console.log('No internet connection found. App is running in offline mode.');
-      store.commit('setStatus', false);
     },
     error(error) {
       console.error('Error during service worker registration:', error);
     },
   });
 }
+
+self.addEventListener('offline', event => {
+  store.commit('setStatus', false);
+})
+
+self.addEventListener('online', event => {
+  store.commit('setStatus', true);
+})
