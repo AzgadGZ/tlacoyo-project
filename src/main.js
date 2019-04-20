@@ -4,9 +4,19 @@ import VueSocketIO from 'vue-socket.io';
 import App from './App.vue';
 import router from './router';
 import store from './store';
-import './registerServiceWorker';
+// import './registerServiceWorker';
 import './axiosConfig';
 import initDB from './indexedDB/IndexedDB';
+
+if('serviceWorker' in navigator){
+  window.addEventListener('load', () => {
+
+    navigator.serviceWorker.register('sw.js')
+      .then(console.log)
+      .catch(console.error);
+
+  })
+}
 
 Vue.config.productionTip = false;
 
