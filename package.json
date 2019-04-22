@@ -5,7 +5,7 @@
     "scripts": {
         "serve": "vue-cli-service serve",
         "build": "vue-cli-service build",
-        "start": "workbox generateSW workbox-config.js && node server.js",
+        "start": "node server.js",
         "mk": "npm run build && workbox generateSW workbox-config.js && node server.js",
         "lint": "vue-cli-service lint"
     },
