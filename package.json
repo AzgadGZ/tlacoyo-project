@@ -4,8 +4,8 @@
     "private": true,
     "scripts": {
         "serve": "vue-cli-service serve",
-        "build": "vue-cli-service build && workbox generateSW workbox-config.js",
-        "start": "node server.js",
+        "build": "vue-cli-service build",
+        "start": "workbox generateSW workbox-config.js && node server.js",
         "mk": "npm run build && workbox generateSW workbox-config.js && node server.js",
         "lint": "vue-cli-service lint"
     },
