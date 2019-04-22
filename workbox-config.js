@@ -7,7 +7,7 @@ module.exports = {
   "runtimeCaching": [
     {
       "urlPattern": /https:\/\/talentland-restful-api\.azurewebsites\.net/,
-      "handler": "networkFirst"
+      "handler": "NetworkFirst"
     }
   ]
 };
